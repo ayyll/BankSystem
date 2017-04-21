@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="OnlineBankSystem"
+  id="myeclipse.1491202633640"
+  context-root="/MybatisDemo"
+  j2ee-spec="6.0"
+  archive="OnlineBankSystem.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

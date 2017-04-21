@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE configuration PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">  
+<configuration>  
+	<!-- 全局别名设置，在映射文件中只需写别名，而不必写出整个类路径  -->  
+    <typeAliases>    
+         <typeAlias type="com.ayyll.entity.User" alias="User"/>
+         <typeAlias type="com.ayyll.entity.Account" alias="Account"/>
+         <typeAlias type="com.ayyll.entity.Log" alias="Log"/>
+         <typeAlias type="com.ayyll.entity.Pagination" alias="Pagination"/>  
+    </typeAliases>   
+    <environments default="environment">  
+        <environment id="environment">  
+            <transactionManager type="JDBC" />  
+            <dataSource type="POOLED">  
+                <property name="driver" value="com.mysql.jdbc.Driver" />  
+                <property name="url"  
+                    value="jdbc:mysql://localhost:3306/bank?characterEncoding=UTF-8" />  
+                <property name="username" value="root" />  
+                <property name="password" value="151297" />  
+            </dataSource>  
+        </environment>  
+    </environments>  
+    
+    <mappers>  
+        <mapper resource="com/ayyll/mapper/UserMapper.xml" />
+        <mapper resource="com/ayyll/mapper/AccountMapper.xml" />
+        <mapper resource="com/ayyll/mapper/LogMapper.xml" />  
+    </mappers>  
+</configuration>  
+ 

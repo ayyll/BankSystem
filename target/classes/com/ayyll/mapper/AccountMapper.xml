@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+  
+<mapper namespace="com.ayyll.mapper.AccountMapper">
+  
+    
+    <!-- 存款 -->  
+    <update id="saveMoney" parameterType="Account">  
+        update account set money=money + #{money} where isDelete=0 and card= #{card}
+    </update>
+    
+    <!-- 取款 -->  
+    <update id="takeMoney" parameterType="Account">  
+        update account set money=money - #{money} where isDelete=0 and card= #{card}
+    </update>
+    
+    <!-- 开户 -->
+    <insert id="openAccount" parameterType="Account">
+    	insert into account(card,password,name,sex,money,open_date,isDelete) values(#{card},#{password},#{name},#{sex},#{money},#{open_date},#{isDelete})
+    </insert>
+    
+    <!-- 查询账户余额 -->  
+    <select id="queryMoney" resultType="int" parameterType="String">  
+        select money from account where isDelete=0 and card=#{card}
+    </select>
+    
+    <!-- 查询账户是否存在 -->  
+    <select id="queryAccount" resultType="Account" parameterType="Account">  
+        select * from account where isDelete=0 and card=#{card}
+    </select>
+    
+    <!-- 查询密码是否正确 -->  
+    <select id="queryPassword" resultType="Account" parameterType="Account">  
+        select * from account where isDelete=0 and card=#{card} and password=#{password}
+    </select>  
+    
+    <!-- 查询账户总数 -->
+    <select id="queryAccountNumber" resultType="int">
+    	select count(1) from account where isDelete=0
+    </select>
+    
+    <!-- 查询总记录(分页查询) -->
+    <select id="queryAccountByPage" resultType="Account" parameterType="Pagination">
+    	select * from account where isDelete=0 order by id limit #{page},#{count}
+    </select>
+    <!-- 删除账户 -->
+    <update id="deleteAccount" parameterType="Account">
+    	update account set isDelete=1 where isDelete=0 and card=#{card} and password=#{password}
+    </update>
+    
+     <!-- 查询单个账户 -->
+    <select id="queryOneAccount" parameterType="Account" resultType="Account">
+    	select * from account where isDelete=0 and card=#{card}
+    </select>
+    
+</mapper>  
